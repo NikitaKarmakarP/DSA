@@ -344,4 +344,60 @@ Now we can see if our program doesn’t revert any error while we try linking 3 
 No, it didn’t show any error, and this is how we created three nodes and linked two of them to the root node.  You can imagine how it would have looked.
 
 
+Understanding the code snippet below:
+
+1. First of all, we wouldn't start from scratch creating the struct Node and the createNode function and everything. So just copy the whole thing we did in our previous programming lecture and paste them here. This would save us a lot of time.
+
+2. Create all the five nodes, using the createNode function, and link them using the arrow operator, and altering their left and right pointer elements. This creates our tree. The next thing would be to create the preOrder function.
+
+    // Constructing the root node - Using Function (Recommended)
+    struct node *p = createNode(4);
+    struct node *p1 = createNode(1);
+    struct node *p2 = createNode(6);
+    struct node *p3 = createNode(5);
+    struct node *p4 = createNode(2);
+    // Finally The tree looks like this:
+    //      4
+    //     / \
+    //    1   6
+    //   / \
+    //  5   2  
+
+    // Linking the root node with left and right children
+    p->left = p1;
+    p->right = p2;
+    p1->left = p3;
+    p1->right = p4;
+Copy
+Code Snippet 1: Creating the Binary tree
+
+ 
+
+Creating the preOrder function:
+
+3. Create a void function preOrder and pass the pointer to the root node of the tree you want to traverse as the only parameter. Inside the function, check if the pointer is not NULL, otherwise we wouldn't do anything. So, if it is not NULL, print the data element of the root struct node by using the arrow operator.
+
+4. After you finish visiting the root node, simply call the same function recursively on the left and the right subtrees and you're done. Applying recursion does your job in its own subtle ways. It considers the left subtree as an individual tree and applies preorder on it, and the same goes for the right subtree.
+
+void preOrder(struct  node* root){
+    if(root!=NULL){
+        printf("%d ", root->data);
+        preOrder(root->left);
+        preOrder(root->right);
+    }
+}
+
+Code Snippet 3: Implementing the preOrder function
+
+Now simply call the preOrder function passing the pointer to the root node as its parameter and see if it actually visits each node.
+
+    preOrder(p);
+Copy
+Code Snippet 4: Using the preOrder function
+
+And the output we received was:
+
+4 1 5 2 6 
+PS D:\MyData\Business\code playground\Ds & Algo with Notes\Code>
+
 
