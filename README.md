@@ -399,5 +399,130 @@ And the output we received was:
 
 4 1 5 2 6 
 
+# PostOrder Traversal in a Binary Tree (With C Code)
 
+Understanding the code snippet below:
+
+1. Following what we did before, we wouldn't start from scratch creating the struct Node and the createNode function and everything. We would just copy the whole thing we did in the PreOrder Traversal programming part and paste them here. This would save us a lot of time and help us compare both Pre and Post Order traversals.
+
+2. Create all the five nodes, using the createNode function, and link them using the arrow operator and altering their left and right pointer element. This creates our tree. The next thing would be to create the postOrder function.
+
+    // Constructing the root node - Using Function (Recommended)
+    struct node *p = createNode(4);
+    struct node *p1 = createNode(1);
+    struct node *p2 = createNode(6);
+    struct node *p3 = createNode(5);
+    struct node *p4 = createNode(2);
+    // Finally The tree looks like this:
+    //      4
+    //     / \
+    //    1   6
+    //   / \
+    //  5   2  
+
+    // Linking the root node with left and right children
+    p->left = p1;
+    p->right = p2;
+    p1->left = p3;
+    p1->right = p4;
+Copy
+Code Snippet 1: Creating the Binary tree
+
+ 
+
+Creating the postOrder function:
+
+3. Create a void function postOrder and pass the pointer to the root node of the tree you want to traverse as the only parameter. Inside the function, check if the pointer is not NULL, otherwise we wouldn't do anything. If it is not NULL, we would not directly print the data of the root since this time it's the last one to get visited.
+
+4. So first, you simply call the same function recursively on the left subtree and then the right subtree using the left and the right elements of the root struct. Once called, recursively, the function now considers the left subtree as an individual tree and applies postorder on it, and the same goes for the right subtree.
+
+5. After visiting them both, you just print the data element of the root node marking it visited. And you are done.
+
+void postOrder(struct  node* root){
+    if(root!=NULL){
+        postOrder(root->left);
+        postOrder(root->right);
+        printf("%d ", root->data);
+    }
+}
+Copy
+Code Snippet 2: Creating the postOrder function
+
+Here is the whole source code:
+
+#include<stdio.h>
+#include<malloc.h>
+
+struct node{
+    int data;
+    struct node* left;
+    struct node* right;
+};
+
+struct node* createNode(int data){
+    struct node *n; // creating a node pointer
+    n = (struct node *) malloc(sizeof(struct node)); // Allocating memory in the heap
+    n->data = data; // Setting the data
+    n->left = NULL; // Setting the left and right children to NULL
+    n->right = NULL; // Setting the left and right children to NULL
+    return n; // Finally returning the created node
+}
+
+void preOrder(struct  node* root){
+    if(root!=NULL){
+        printf("%d ", root->data);
+        preOrder(root->left);
+        preOrder(root->right);
+    }
+}
+
+void postOrder(struct  node* root){
+    if(root!=NULL){
+        postOrder(root->left);
+        postOrder(root->right);
+        printf("%d ", root->data);
+    }
+}
+
+int main(){
+     
+    // Constructing the root node - Using Function (Recommended)
+    struct node *p = createNode(4);
+    struct node *p1 = createNode(1);
+    struct node *p2 = createNode(6);
+    struct node *p3 = createNode(5);
+    struct node *p4 = createNode(2);
+    // Finally The tree looks like this:
+    //      4
+    //     / \
+    //    1   6
+    //   / \
+    //  5   2  
+
+    // Linking the root node with left and right children
+    p->left = p1;
+    p->right = p2;
+    p1->left = p3;
+    p1->right = p4;
+
+    preOrder(p);
+    printf("\n");
+    postOrder(p);
+    return 0;
+}
+Copy
+Code Snippet 3: Implementing the postOrder function
+
+Now simply call both preOrder and the postOrder function passing the pointer to the root node as their parameter and see how their results vary.
+
+    preOrder(p);
+    printf("\n");
+    postOrder(p);
+Copy
+Code Snippet 4: Using the preOrder and the postOrder function
+
+And the output we received was:
+
+4 1 5 2 6 
+5 2 1 6 4
 
