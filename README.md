@@ -526,3 +526,116 @@ And the output we received was:
 4 1 5 2 6 
 5 2 1 6 4
 
+# InOrder Traversal in a Binary Tree (With C Code)
+
+Understanding the code snippet below:
+
+You know what to do first, right? We avoid doing repetitions, so we wouldn't start from scratch creating the whole struct Node and the createNode thing again rather we would just copy the whole thing we did in the PostOrder Traversal programming part and paste them here. This would get us even the codes for PreOrder and PostOrder.
+You should now be able to create Binary Tree yourselves by now. So, just create the same binary tree we observed above using the createNode function. And if you are still not sure about creating a binary tree, follow the previous lectures. Let’s now move to create the InOrder function.
+Creating the inOrder function:
+
+Create a void function inOrder and pass the pointer to the root node of the tree you want to traverse as the only parameter. Inside the function, check if the pointer is not NULL, as we are doing every time, since this is the base case for the recursion to stop. If it is NULL, we wouldn’t do anything but if it isn’t we would call the same function recursively on the left subtree using the left element of the root struct.
+After we finish visiting the left subtree, we print the data element of the root node indicating it as visited.
+Having visited both the left subtree and the root, we now move to the right subtree and call it recursively. This completes our flow. And we are done visiting all the nodes.
+void inOrder(struct  node* root){
+    if(root!=NULL){
+        inOrder(root->left);
+        printf("%d ", root->data);
+        inOrder(root->right);
+    }
+}
+Copy
+Code Snippet 1: Creating the InOrder function
+
+ 
+
+Here is the whole source code:
+
+#include<stdio.h>
+#include<malloc.h>
+
+struct node{
+    int data;
+    struct node* left;
+    struct node* right;
+};
+
+struct node* createNode(int data){
+    struct node *n; // creating a node pointer
+    n = (struct node *) malloc(sizeof(struct node)); // Allocating memory in the heap
+    n->data = data; // Setting the data
+    n->left = NULL; // Setting the left and right children to NULL
+    n->right = NULL; // Setting the left and right children to NULL
+    return n; // Finally returning the created node
+}
+
+void preOrder(struct  node* root){
+    if(root!=NULL){
+        printf("%d ", root->data);
+        preOrder(root->left);
+        preOrder(root->right);
+    }
+}
+
+void postOrder(struct  node* root){
+    if(root!=NULL){
+        postOrder(root->left);
+        postOrder(root->right);
+        printf("%d ", root->data);
+    }
+}
+
+void inOrder(struct  node* root){
+    if(root!=NULL){
+        inOrder(root->left);
+        printf("%d ", root->data);
+        inOrder(root->right);
+    }
+}
+
+int main(){
+     
+    // Constructing the root node - Using Function (Recommended)
+    struct node *p = createNode(4);
+    struct node *p1 = createNode(1);
+    struct node *p2 = createNode(6);
+    struct node *p3 = createNode(5);
+    struct node *p4 = createNode(2);
+    // Finally The tree looks like this:
+    //      4
+    //     / \
+    //    1   6
+    //   / \
+    //  5   2  
+
+    // Linking the root node with left and right children
+    p->left = p1;
+    p->right = p2;
+    p1->left = p3;
+    p1->right = p4;
+
+    // preOrder(p);
+    // printf("\n");
+    // postOrder(p);
+    // printf("\n");
+    inOrder(p);
+    return 0;
+}
+Copy
+Code Snippet 2: Implementing the inOrder function
+
+Now simply call all the traversal functions, preOrder, postOrder, and inOrder passing the pointer to the root node as their parameter and see how they work.
+
+    preOrder(p);
+    printf("\n");
+    postOrder(p);
+    printf("\n");
+    inOrder(p);
+Copy
+Code Snippet 3: Using the preOrder, the postOrder, and the inOrder functions
+
+And the output we received was:
+
+4 1 5 2 6 
+5 2 1 6 4 
+5 1 2 4 6
