@@ -11,7 +11,6 @@ And then run a while loop with the condition that both the index variables i and
 And when the loop finishes, either array A or B or both get finished. And now you run two while loops for each array A and B, and insert all the remaining elements as they are in the array C. And you are done merging.
 4. The pseudocode for the above procedure has been attached below.
 
-[
 void Merge(int A[], int B[], int C[], int n, int m)
 {
     int i = 0, j = 0, k = 0;
@@ -38,4 +37,4 @@ void Merge(int A[], int B[], int C[], int n, int m)
         k++;
     }
 }
-]
+
