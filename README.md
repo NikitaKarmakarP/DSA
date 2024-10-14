@@ -1165,3 +1165,35 @@ And the output we received was:
 
 Found: 6
 
+# Insertion in a Binary Search Tree
+
+We know a few facts about binary search trees. And I’ll only mention the ones we will focus on, while we learn the insertion operation.
+
+1. There are no duplicates in a binary search tree. So, if you could search the element you are being asked to insert, you would return that the number already exists.
+2. Now, you would follow what we did in the search operation. Here is an example binary search tree, and the element we want to insert is 9.
+
+Now, you would simply start from the root node, and see if the element you want to insert is greater than or less than. And since 9 is greater than 8, we move to the right of the root. And then the root is the element 10, and since this time 9 is less than 10, we move to the left of it. And since there are no elements to its left, we simply insert element 9 there.
+
+This was one simple case, but things become more complex when you have to insert your element at some internal position and not at the leaf.
+
+Now, before you insert a node, the first thing you would do is to create that node and allocate memory to it in heap using malloc. Then you would initialize the node with the data given, and both the right and the left member of the node should be marked NULL.
+
+And another important thing to see here is the pointer you would follow the correct position with. In the above example, to be able to insert at that position, the pointer must be at node 10.
+
+And then you check whether going to the left side is good, or the right. Here you came to the left, but had it been right, we would have updated our pointer ptr further and maintained a second pointer to the previous root. We’ll see all this via our program. That would actually make things simpler to understand.  I have attached the source code below. Follow it as we proceed.
+
+Understanding the source code below:
+
+1. Now, since our main focus would be to create the insert function, we could just copy everything we did in the last programming lecture where we learned the iterative search operation. And this would save us a lot of time. And we would have the createNode and other functions we did before at one place for our exigency.
+2. Create a binary search tree of your choice, we would rather go with the one we already had in the program. Now, let’s see the insert
+
+Creating the insert function:
+
+3. So, the first thing we would like to know is whether inserting this new node is even possible or not. For that, create a void function insert and pass the pointer to the root node, and the data of the node you want to insert as its parameters. We will call it
+4. Now, we would use two struct pointers to traverse through the array. One of them would be our root which we would traverse through the nodes, and the other one would be prev which stores the pointer to the previous root. SO, just create a struct Node pointer prev to maintain the node you were previously at, at some point in time.
+5. Run a while loop that is for until we reach some leaf, and couldn't traverse further. So, run that loop until the root becomes NULL. And inside that loop, make the prev equal to the current root since we would definitely move further because this root is not a NULL. We would either move to the left of this root or to the right of this root. But before that check, if this root itself is not equal to the node we are trying to insert. That is, write an if condition to see if there are any duplicates here. If there is, return from the function here itself.
+6. Further in the loop, check if the element you want to insert is less than the current root. If it is, update the root to the left element of the struct root. And if it isn't, update the root to the right element of the struct root. And since we have already stored this root in the prev node, there isn’t any issue updating.
+7. And finally, you will have a prev node as the outcome at the end after this loop finishes. Now, the only procedure left now is to link these nodes together, that is the prev node, the new node, and the node next to the prev
+8. Now, before you insert, make sure you create that new struct node using malloc, or simply the createNode Fill in the key data into this new node. Now, simply check if the prev->data is less than the key or greater than the key. If it is less, insert our new node to the left of prev, else to right of prev. And that would be it. We are done inserting our new node.
+
+
