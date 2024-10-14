@@ -398,6 +398,6 @@ Code Snippet 4: Using the preOrder function
 And the output we received was:
 
 4 1 5 2 6 
-PS D:\MyData\Business\code playground\Ds & Algo with Notes\Code>
+
 
 
