@@ -1146,3 +1146,22 @@ Code Snippet 3: Using the searchIter function
 And the output we received was:
 
 Element not found
+
+Figure 1: Output of the above code
+
+And since 10 was not there in the binary search tree we created, the function searchIter returned a NULL. Let’s see if it works for something else. Let’s use the function to find 6 in the above BST.
+
+    struct node* n = searchIter(p, 6);
+    if(n!=NULL){
+    printf("Found: %d", n->data);
+    }
+    else{
+        printf("Element not found");
+    }
+Copy
+Code Snippet 4: Using the searchIter function again
+
+And the output we received was:
+
+Found: 6
+
