@@ -38,3 +38,41 @@ void Merge(int A[], int B[], int C[], int n, int m)
     }
 }
 
+Now, this would quite not be our situation when sorting an array using the merge sort. We wouldn’t have two different arrays A and B, rather a single array having two sorted subarrays. Now, I’d show you how to merge two sorted subarrays of a single array in the array itself.
+
+Suppose there is an array A of 5 elements and contains two sorted subarrays of length 2 and 3 in itself.
+
+Here is the representation of the unsorted array A as shown in the image:
+
+  0   1   2   3   4
++---+---+---+---+---+
+| 7 | 15|  2|  8| 10|
++---+---+---+---+---+
+  Unsorted Array A
+
+This array has five elements, with the values 7, 15, 2, 8, 10, and their respective indices 0, 1, 2, 3, 4.
+
+To merge both the sorted subarrays and produce a sorted array of length 5, we will create an auxiliary array B of size 5. Now the process would be more or less the same, and the only change we would need to make is to consider the first index of the first subarray as low and the last index of the second subarray as high. And mark the index prior to the first index of the second subarray as mid.
+
+Here is the representation of the arrays:
+   low   mid    high
+    ↓     ↓       ↓
+  +----+----+----+----+----+
+  | 7  | 15 |  2 |  8 | 10 |
+  +----+----+----+----+----+
+     0    1    2    3    4
+    Unsorted Array A
+
+In this scenario, low = 0, mid = 2, and high = 4, which divides Array A for sorting (possibly using merge sort or another sorting algorithm).
+
+    k
+    ↓
+  +----+----+----+----+----+
+  |    |    |    |    |    |
+  +----+----+----+----+----+
+     0    1    2    3    4
+    Sorted Array B
+
+Array B is empty for now, and k = 0, representing the starting index for filling the sorted values from Array A into Array B during the sorting process.
+
+
